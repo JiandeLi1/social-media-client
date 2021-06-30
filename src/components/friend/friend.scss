@@ -1,0 +1,18 @@
+
+            .sidebarFriend{
+                display: flex;
+                align-items: center;
+                margin-bottom: 15px;
+                cursor: pointer;
+                .sidebarFriendImg{
+                    width: 32px;
+                    height:33px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                 }
+
+                .sidebarFriendName{
+                    margin-left:20px ;
+                }
+            }
+            

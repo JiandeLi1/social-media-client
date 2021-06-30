@@ -1,0 +1,89 @@
+$main-blue:#1877f2;
+$main-white:#fff;
+@mixin Flex($jc:flex-start,$ai:center) {
+     display: flex;
+     justify-content: $jc;
+     align-items: $ai;
+}
+.share{
+    width: 100%;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 0px 16px -8px rgba(0,0,0,0.7); 
+    box-shadow: 0px 0px 16px -8px rgba(0,0,0,0.7);
+
+    .shareWrapper{
+        padding:10px;
+       
+        .shareTop{
+            @include Flex;
+            img{
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                object-fit: cover;
+                margin: 0 15px;
+            }
+
+            .shareInput{
+                border: none;
+                &:focus{
+                    outline: none;
+                }
+            }
+        }
+
+        .shareHr{
+            margin: 20px;
+        }
+        .shareBottom{
+            @include Flex(space-between);
+            .shareOptions{
+                display: flex;
+                margin-left: 15px;
+                .shareOption{
+                    @include Flex;
+                    margin-right:20px;
+                    cursor: pointer;
+
+                    .shareIcon{
+                        font-size:18px;
+                        margin-right:3px;
+                    }
+                    .shareOptionText{
+                        font-size: 14px;
+                    }
+                }
+            }
+            .shareButton{
+                border: none;
+                justify-self: end;
+                padding:7px;
+                margin-right: 20px;
+                border-radius: 5px;
+                background-color:$main-blue;
+                font-weight: 500;
+                color: $main-white;
+            }
+        }
+
+        
+    }
+}
+
+.shareImgContainer{
+    padding:0 20px 10px 20px;
+    position:relative;
+
+    .shareImg{
+        width:30%;
+        object-fit:cover;
+    }
+
+    .shareCancelImg{
+        position:absolute;
+        top:0;
+        right:20;
+        cursor: pointer;
+        opacity:0.7;
+    }
+}

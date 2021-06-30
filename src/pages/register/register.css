@@ -1,0 +1,78 @@
+.register {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #f0f2f5;
+}
+
+.register .registerWrapper {
+  width: 70%;
+  height: 70%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.register .registerWrapper .registerLeft, .register .registerWrapper .registerRight {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.register .registerWrapper .registerLeft .registerLogo {
+  font-size: 50px;
+  font-weight: 800;
+  color: #1775ee;
+  margin-bottom: 10px;
+}
+
+.register .registerWrapper .registerLeft .registerDesc {
+  font-size: 24px;
+}
+
+.register .registerWrapper .registerRight .registerBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 400px;
+  width: 70%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.register .registerWrapper .registerRight .registerBox input {
+  height: 50px;
+  width: 90%;
+  font-size: 18px;
+  padding-left: 20px;
+  border-radius: 10px;
+  border: 1px solid gray;
+}
+
+.register .registerWrapper .registerRight .registerBox input:focus {
+  outline: none;
+}
+
+.register .registerWrapper .registerRight .registerBox .registerButton {
+  height: 50px;
+  width: 90%;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  background-color: #1775ee;
+  cursor: pointer;
+}
+
+.register .registerWrapper .registerRight .registerBox span {
+  color: #1775ee;
+}

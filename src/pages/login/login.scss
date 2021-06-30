@@ -1,0 +1,76 @@
+$main-white:#f0f2f5;
+$main-blue:#1775ee;
+@mixin Flex($fd:row, $jc:flex-start, $ai:flex-start){
+    display: flex;
+    flex-direction: $fd;
+    justify-content: $jc;
+    align-items: $ai;
+}
+.login{
+    @include Flex(row, center, center);
+    width: 100vw;
+    height: 100vh;
+    background-color: $main-white;
+
+    .loginWrapper{
+        width:70%;
+        height: 70%;
+        @include Flex(row, space-between, center);
+
+        .loginLeft, .loginRight{
+            flex: 1;
+            @include Flex(column,center)
+        }
+
+        .loginLeft{
+            .loginLogo{
+            font-size: 50px;
+            font-weight: 800;
+            color:$main-blue;
+            margin-bottom: 10px;
+            }
+            .loginDesc{
+                font-size: 24px;
+            }
+        }
+
+        .loginRight{
+            .loginBox{
+                @include Flex(column,space-between, center);
+                height: 300px;
+                width: 70%;
+                padding:20px;
+                background-color:#fff;
+                border-radius: 10px;
+
+                input{
+                    height: 50px;
+                    width: 90%;
+                    font-size: 18px;
+                    padding-left:20px;
+                    border-radius:10px;
+                    border: 1px solid gray;
+                    &:focus{
+                        outline:none;
+                    }
+                }
+                
+                .loginButton{
+                    height: 50px;
+                    width: 90%;
+                    border:none;
+                    border-radius: 10px;
+                    color:#fff;
+                    font-size: 20px;
+                    font-weight: 500;
+                    background-color: $main-blue;
+                    cursor: pointer;
+                }
+
+                span{
+                  color:$main-blue
+                }
+            }
+        }
+    }
+}
