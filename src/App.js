@@ -4,6 +4,7 @@ import Home from './pages/home/home'
 import Profile from './components/profile/profile'
 import Login from "./pages/login/login"
 import Register from './pages/register/register'
+import Messenger from './pages/messenger/Messenger'
 import {
   BrowserRouter as Router,
   Switch,
@@ -24,6 +25,9 @@ function App() {
         </Route>
         <Route path="/register">
           {user ?  <Redirect to="/"/> : <Register />}
+        </Route>
+        <Route path="/messenger">
+          {!user ?  <Redirect to="/"/> : <Messenger />}
         </Route>
         <Route path="/profile/:username">
           <Profile />

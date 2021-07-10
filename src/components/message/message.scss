@@ -1,0 +1,43 @@
+@mixin Flex ($fd:row,$jc:none, $ai:none){
+     display: flex;
+     flex-direction:$fd;
+     justify-content: $jc;
+     align-items: $ai;
+}
+
+.message{
+    @include Flex(column);
+
+    .messageImg{
+        width: 32px;
+        height: 32px;
+        margin-right: 10px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    
+
+    .messageBottom{
+        font-style: 12px;
+        margin-top: 10px;
+    }
+}
+
+.messageText{
+        display: inline-block;
+        padding: 10px;
+        border-radius: 20px;
+        color: white;
+        background-color: #1877f2;
+    }
+
+.message.own{
+      align-items: flex-end;
+      margin-right: 20px;
+      .messageText{
+          background-color: rgb(233, 232, 232);
+          color:black;
+
+      }
+}
