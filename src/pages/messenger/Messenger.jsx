@@ -6,14 +6,49 @@ import Message from '../../components/message/Message'
 import ChatOnline from '../../components/chatOnline/ChatOnline'
 import { AuthContext } from '../../context/AuthContext'
 import axios from "axios"
+import { io } from "socket.io-client"
 
 export default function Messenger() {
     const [conversations, setConversation] = useState([])
     const [currentChat, setCurrentChat] = useState(null)
     const [messages, setMessages] = useState([])
     const [newMessage, setNewMessage] = useState("")
+    const [arrivalMessage, setArrivalMessage] = useState(null)
+    const [onlineUsers, setOnlineUsers] = useState([])
+    const socket = useRef()
     const { user } = useContext(AuthContext)
-    const scrollRef=useRef()
+    const scrollRef = useRef()
+
+    useEffect(() => {
+        socket.current = io("ws://localhost:8900")
+        socket.current.on("getMessage", data => {
+            setArrivalMessage({
+                sender: data.senderId,
+                text: data.text,
+                createAt: Date.now(),
+            })
+        })
+    }, [])
+    
+    useEffect(() => {
+        arrivalMessage && currentChat?.members.includes(arrivalMessage.sender) && setMessages(prev=>[...prev, arrivalMessage])
+    },[arrivalMessage, currentChat])
+
+    useEffect(() => {
+        //Take the socket from websocket port
+        // setSocket(io("ws://localhost:8900"))
+        // console.log(socket)
+
+        //Set the name call addUser
+        socket.current.emit("addUser", user._id)
+        socket.current.on("getUsers", users => {
+            setOnlineUsers(
+                user.followings.filter((f)=>users.some(u=> u.userId===f)))
+        })
+    }, [user])
+
+   
+
     useEffect(() => {
         const getConversations = async () => {
             try {
@@ -51,7 +86,15 @@ export default function Messenger() {
             text: newMessage,
             conversationId: currentChat._id,
         }
-        
+
+        const receiverId = currentChat.members.find(member=>member !== user._id)
+
+        socket.current.emit("sendMessage", {
+            senderId: user._id,
+            receiverId,
+            text: newMessage,
+        })
+
         try {
             const res = await axios.post("/messages", message);
             setMessages([...messages, res.data])
@@ -111,7 +154,11 @@ export default function Messenger() {
                 </div>
                 <div className="chatOnline">
                     <div className="chatOnlineWrapper">
-                        <ChatOnline />
+                        <ChatOnline
+                            onlineUsers={onlineUsers}
+                            currentId={user._id}
+                            setCurrentChat = { setCurrentChat }
+                        />
                     </div>
                 </div>
             </div>
